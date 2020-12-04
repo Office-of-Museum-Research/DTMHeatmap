@@ -29,6 +29,7 @@
     MKCoordinateSpan span = MKCoordinateSpanMake(1.0, 1.0);
     CLLocationCoordinate2D center = CLLocationCoordinate2DMake(38.5556, -121.4689);
     self.mapView.region = MKCoordinateRegionMake(center, span);
+    self.mapView.cameraZoomRange = [[MKMapCameraZoomRange new] initWithMinCenterCoordinateDistance:0];
     
     self.heatmap = [DTMHeatmap new];
     [self.heatmap setData:[self parseLatLonFile:@"mcdonalds"]];
