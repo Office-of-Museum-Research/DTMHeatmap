@@ -15,7 +15,9 @@ $(TARGET)-iphone.framework:
 $(TARGET).framework: $(TARGET)-simulator.framework $(TARGET)-iphone.framework
 	cp -R $(TARGET)-iphone.framework ./$(TARGET).framework
 	rm ./$(TARGET).framework/$(TARGET)
-	lipo -create -output $(TARGET).framework/$(TARGET) $(TARGET)-iphone.framework/$(TARGET) $(TARGET)-simulator.framework/$(TARGET)
+	lipo $(TARGET)-simulator.framework/$(TARGET) -remove arm64 -output $(TARGET)-simulator.framework/$(TARGET)
+	lipo -create -output $(TARGET).framework/$(TARGET) $(TARGET)-simulator.framework/$(TARGET) $(TARGET)-iphone.framework/$(TARGET)
 
 clean:
 	rm -rf *.framework
+	rm -rf build
